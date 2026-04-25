@@ -71,7 +71,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
                     <li className="p-3 flex items-center justify-evenly gap-2">
                         <span className="text-sm font-bold flex flex-col">Contact</span>
                         <div className="relative group">
-                            <a href="https://gauravkumar03.vercel.app" target="_blank">
+                            <a href="https://gauravk.vercel.app" target="_blank">
                                 <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" />
                             </a>
                             <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">

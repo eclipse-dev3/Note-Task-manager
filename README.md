@@ -1,114 +1,151 @@
-# Notes-Todos — Combined Notes & Todos App
+# OwnDocs — Note & Task Manager
 
-A polished, front‑end only Notes & Todos web application built with React and Tailwind CSS.  
-Purpose-built for quick local productivity: create, organize, and manage notes and todos with a clean, responsive UI. All data is stored in the browser (LocalStorage) — no backend required.
-
----
-
-## Quick overview
-Notes-Todos is a single-page React app that combines a notes manager and a todo tracker. It focuses on local-first UX, fast interactions, and cross‑device compatibility for reading and writing small personal data sets.
+A polished, frontend-only productivity application built with **React.js** and **Tailwind CSS**.  
+Designed for fast local productivity: create, organize, and manage notes and tasks with a clean, responsive UI. All data is persisted in the browser via **LocalStorage** — no backend required.
 
 ---
 
-## Features
+## 🔗 Live Demo
 
-Core
-- Fast CRUD: create, view, edit, and delete notes and todos.
-- Local persistence: all items saved to LocalStorage for offline usage.
-- Responsive UI with Tailwind CSS (mobile → desktop).
-
-Notes (what you can do)
-- Rich note cards with title and content preview.
-- Pin notes for quick access.
-- Soft delete to Recycle Bin, restore or permanently delete.
-- Search notes with debounced input for better performance.
-- Folder views: All, Pinned, Recycle Bin.
-
-Todos (what you can do)
-- Create tasks with title, optional description and due/created timestamps.
-- Mark todos as completed (stores completion timestamp).
-- Pin/Unpin tasks.
-- Soft delete / restore / permanently delete.
-- Filter and search todos across folders.
-- Toggle completed state directly from task cards.
-
-Date handling
-- Centralized date utility to normalize multiple input formats.
-- Formats include short date (e.g., "16 Oct 2025") and full date/time.
-- Best practice: items store timestamps as ISO strings (new Date().toISOString()) for cross-browser consistency.
-
-UX & polish
-- Smooth animations, hidden scrollbar option for cleaner design.
-- Sidebar for folder navigation and quick actions.
-- Debounced search for lower CPU usage on large lists.
+**[owndocs.vercel.app](https://owndocs.vercel.app)**
 
 ---
 
-## Tech stack
-- React (functional components + hooks)
-- Tailwind CSS
-- Vite / Create React App compatible
-- React Icons
-- LocalStorage for persistence
-- Vanilla JS utilities for date parsing/formatting
+## 📌 Overview
+
+OwnDocs is a single-page React application that combines a **Note Manager** and a **Task Tracker** into one seamless experience. It focuses on local-first UX, optimized performance, and cross-device compatibility — built for developers and productivity-focused users who want a lightweight, offline-ready tool.
 
 ---
 
-## Project structure (high level)
-- src/
-  - Components/
-    - Notes/ (NoteApp, NoteList, NoteCard, NoteForm, ...)
-    - Todos/ (TodosApp, TodoList, TodoCard, TodoForm, ...)
-    - Common/ (FormateDate.js, shared helpers)
-  - main.jsx — application entry
-  - index.css — Tailwind + global styles
+## ✨ Features
+
+### 📝 Notes
+- Full **CRUD** — create, view, edit, and delete notes instantly
+- **Pin / Unpin** notes for quick access
+- **Soft delete** to Recycle Bin with restore or permanent delete
+- **Debounced search** for optimized performance on large note lists
+- **Folder-based navigation** — All, Pinned, Recycle Bin
+
+### ✅ Tasks
+- Create tasks with title, optional description, and timestamps
+- **Mark tasks as complete** with auto-stored completion timestamp
+- **Pin / Unpin** tasks for priority management
+- **Soft delete / restore / permanently delete** tasks
+- **Filter and search** across all folders
+- Toggle completion directly from task cards
+
+### 🗓️ Date Handling
+- Centralized date utility supporting multiple input formats
+- Displays short (`16 Oct 2025`) and full date-time formats
+- Timestamps stored as ISO strings for cross-browser consistency
+
+### 🎨 UI & UX
+- Smooth animations and transitions throughout
+- Hidden scrollbar option for a cleaner, distraction-free design
+- **Sidebar navigation** for folders and quick actions
+- Fully **responsive** — mobile to desktop
 
 ---
 
-## Getting started (local)
-1. Clone the repo:
-   git clone <repo-url>
-2. Install:
-   npm install
-3. Run dev server:
-   npm run dev
-4. Open the URL shown by the dev server (usually http://localhost:5173 or http://localhost:3000).
+## 🛠️ Tech Stack
 
-Build & deploy:
-- npm run build
-- Deploy the produced `dist`/`build` folder to static hosts: Netlify, Vercel, GitHub Pages, etc.
+| Technology | Usage |
+|------------|-------|
+| **React.js** | Functional components + Hooks |
+| **Tailwind CSS** | Utility-first styling & responsiveness |
+| **Vite** | Fast build tool & dev server |
+| **React Icons** | Consistent icon system |
+| **LocalStorage** | Offline-first data persistence |
+| **Vanilla JS** | Date parsing & formatting utilities |
 
 ---
 
-## Usage notes & recommendations
-- Data is local: clearing browser/site storage will delete items.
-- For reliable date parsing across devices, ensure timestamps are ISO strings.
-- If you see "Invalid date" on some mobile browsers, update to the latest browser or ensure timestamps are ISO formatted.
-- The UI is designed for client-only use; no authentication or syncing is included.
+## 📁 Project Structure
+
+```
+src/
+├── Components/
+│   ├── Notes/          # NoteApp, NoteList, NoteCard, NoteForm
+│   ├── Todos/          # TodosApp, TodoList, TodoCard, TodoForm
+│   └── Common/         # FormatDate.js, shared helpers
+├── main.jsx            # Application entry point
+└── index.css           # Tailwind + global styles
+```
 
 ---
 
-## Contributing
-- Fork → branch → PR.
-- Keep PRs small and focused.
-- Document changes and add minimal tests where applicable.
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16+)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/eclipse-dev3/owndocs
+
+# Navigate into the project
+cd owndocs
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build & Deploy
+
+```bash
+# Create production build
+npm run build
+
+# Deploy the dist/ folder to any static host:
+# Vercel, Netlify, GitHub Pages, etc.
+```
 
 ---
 
-## License
-MIT
+## 📋 Usage Notes
+
+- **Local-only data** — clearing browser storage will remove all items
+- **ISO timestamps** recommended for reliable date parsing across devices
+- If you see "Invalid date" on mobile, ensure timestamps are ISO formatted
+- No authentication or cloud sync — built for personal, client-side use
 
 ---
 
-## Author / Credits
-Built by the project author (see GitHub profile).  
-Icons: React Icons. Styling: Tailwind CSS.
+## 🤝 Contributing
 
+Contributions are welcome!
 
-**Live link**
-- Live: [https://owndocs03.vercel.app](https://owndocs03.vercel.app)
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
 
+Please keep PRs small, focused, and well-documented.
 
-**Gaurav Kumar**
-- Portfolio: [https://gauravkumar03.vercel.app](https://gauravkumar03.vercel.app)
-- GitHub: [Your GitHub Profile](https://github.com/eclipse-dev3)
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute.
+
+---
+
+## 👨‍💻 Author
+
+**Gourav Kumar** — Frontend Developer
+
+- 🌐 Portfolio: [gauravk.vercel.app](https://gauravk.vercel.app)
+- 💻 GitHub: [github.com/eclipse-dev3](https://github.com/eclipse-dev3)
+
+---
+
+> Built with ❤️ using React.js & Tailwind CSS
