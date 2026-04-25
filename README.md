@@ -84,7 +84,7 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/eclipse-dev3/owndocs
+git clonehttps://github.com/eclipse-dev3/Note-Task-manager
 
 # Navigate into the project
 cd owndocs
