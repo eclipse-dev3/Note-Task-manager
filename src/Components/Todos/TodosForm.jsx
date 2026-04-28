@@ -100,7 +100,7 @@ function TodoForm({ selectedTodo, closeForm }) {
 
                 {/* Content Area */}
                 <textarea
-                    placeholder="Take a todo..."
+                    placeholder="Take a task..."
                     value={text}
                     autoFocus
                     spellCheck="false"

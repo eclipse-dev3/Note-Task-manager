@@ -24,8 +24,8 @@ function TodosList({ activeFolder, searchInput }) {
         return (
             <div className="flex flex-col items-center justify-center h-[60vh] text-gray-600 animate-fadeIn">
                 <LuInbox className="text-6xl mb-3 text-gray-500" />
-                <p className="font-semibold text-lg">No todos found in {activeFolder}.</p>
-                <p className="text-sm text-gray-400 mt-1">Try creating or restoring some todos.</p>
+                <p className="font-semibold text-lg">No tasks found in {activeFolder}.</p>
+                <p className="text-sm text-gray-400 mt-1">Try creating or restoring some tasks.</p>
             </div>
         );
     }

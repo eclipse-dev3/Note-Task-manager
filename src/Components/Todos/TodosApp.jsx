@@ -14,12 +14,12 @@ function TodosApp() {
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-    const [activeFolder, setActiveFolder] = useState('All Todos');
+    const [activeFolder, setActiveFolder] = useState('All Tasks');
     const [searchInput, setSearchInput] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [activeFolderView, setActiveFolderView] = useState(
         <div className="flex items-center gap-2 h-6">
-            <LuNotebook /> All Todos
+            <LuNotebook /> All Tasks
         </div>
     );
 
@@ -33,13 +33,13 @@ function TodosApp() {
 
     // Load saved notes
     useEffect(() => {
-        const todos = JSON.parse(localStorage.getItem('myTodos'));
+        const todos = JSON.parse(localStorage.getItem('myTasks'));
         if (todos && todos.length > 0) setTodos(todos);
     }, []);
 
     // Save notes to local storage
     useEffect(() => {
-        localStorage.setItem('myTodos', JSON.stringify(todos));
+        localStorage.setItem('myTasks', JSON.stringify(todos));
     }, [todos]);
 
     // CRUD logic
@@ -114,7 +114,7 @@ function TodosApp() {
                 <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
-                    <SearchBar placeholder={'Search todos...'}
+                    <SearchBar placeholder={'Search tasks...'}
                         searchInput={searchInput} setSearchInput={setSearchInput}
                         className='text-[#ea105c] hover:text-[#ea105c]'
                     />
@@ -135,7 +135,7 @@ function TodosApp() {
                     >
                         <FaRegPenToSquare className="text-xl" />
                         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">
-                            New Note
+                            New Task
                         </span>
                     </div>
 

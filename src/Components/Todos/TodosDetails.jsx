@@ -33,7 +33,7 @@ function TodoDetails({ todo, softDelete }) {
         const doc = new jsPDF();
         const content = `Title: ${todo.text}\n\nCreated At: ${todo.createdAt}\nLast Updated: ${todo.lastUpdateAt}`;
         doc.text(content, 10, 10);
-        doc.save(`${todo.todo || "Untitled Note"}.pdf`);
+        doc.save(`${todo.todo}.pdf`);
     };
 
     return (

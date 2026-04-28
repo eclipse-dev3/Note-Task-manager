@@ -9,7 +9,7 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import Profile from '../../../src/assets/Profile.png'
 
 function TodosSideBar({ isOpen, onSelectFolder, todos }) {
-    const [activeFolder, setActiveFolder] = useState("All Todos");
+    const [activeFolder, setActiveFolder] = useState("All Tasks");
 
     const allTodosCount = todos.filter(todo => !todo.isDeleted).length;
     const pinnedTodosCount = todos.filter(todo => todo.isPinned && !todo.isDeleted).length;
@@ -19,11 +19,11 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
     const recycleBinCount = todos.filter(todo => todo.isDeleted).length;
 
     const keys = [
-        { id: 1, label: 'All Todos', icon: <LuNotebook />, count: allTodosCount },
-        { id: 2, label: 'Pinned Todos', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedTodosCount },
-        { id: 3, label: 'Pending Todos', icon: <MdCheckBoxOutlineBlank />, count: pendingTodosCount },
-        { id: 4, label: 'Completed Todos', icon: <FaCircleCheck />, count: completedTodosCount },
-        // { id: 5, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
+        { id: 1, label: 'All Tasks', icon: <LuNotebook />, count: allTodosCount },
+        { id: 2, label: 'Pinned Tasks', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedTodosCount },
+        { id: 3, label: 'Pending Tasks', icon: <MdCheckBoxOutlineBlank />, count: pendingTodosCount },
+        { id: 4, label: 'Completed Tasks', icon: <FaCircleCheck />, count: completedTodosCount },
+        // { id: 5, label: 'Locked Tasks', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
         { id: 6, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 

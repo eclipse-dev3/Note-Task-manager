@@ -59,8 +59,8 @@ function TodosCard({ todo, isRecycleBin }) {
                     sm:h-[80px] lg:h-[80px] max-[640px]:h-[60px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
                     animate-fadeIn
-                    ${todo.isCompleted ? 'bg-red-50' : 'bg-white'}
-            ${!isRecycleBin ? " hover:bg-red-50" : "opacity-80 cursor-not-allowed"}
+                    ${todo.isCompleted ? 'bg-gray-300' : 'bg-white'}
+            ${!isRecycleBin && !todo?.isCompleted ? " hover:bg-red-100" : "opacity-80 cursor-not-allowed"}
                 `}
             >
 

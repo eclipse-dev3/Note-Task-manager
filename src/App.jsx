@@ -27,7 +27,7 @@ function App() {
                 color: isActive ? activeColor : "",
               }}
             >
-              {tab === "notes" ? "Notes" : "Todos"}
+              {tab === "notes" ? "Notes" : "Tasks"}
 
               {/* Animated underline */}
               <span
