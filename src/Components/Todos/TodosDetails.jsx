@@ -9,7 +9,7 @@ import { UseTodo } from "../../Context/TodosContext";
 import { jsPDF } from "jspdf";
 import { FormatDate } from "../Common/FormateDate";
 
-function TodoDetails({ todo, softDelete }) {
+function TodoDetails({ todo, softDelete, toggleLock }) {
 
     const { togglePin } = UseTodo();
     const [showConfirm, setShowConfirm] = useState(false);
@@ -52,6 +52,14 @@ function TodoDetails({ todo, softDelete }) {
                             <SiPinboard className="text-[#ea105c] text-lg transform scale-x-[-1]" /> Pin
                         </>
                     )}
+                </p>
+
+
+                {/* Lock / Unlock */}
+
+                <p onClick={() => toggleLock(todo.id)}
+                    className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] rounded-md h-10 px-2">
+                    {todo?.isLocked ? <><TiLockOpen className="text-[#6949c1]" /> Unlock</> : <><TiLockClosed className="text-[#6949c1]" /> Lock</>}
                 </p>
 
                 {/* Download Buttons */}

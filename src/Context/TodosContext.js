@@ -23,7 +23,7 @@ export const TodoContext = createContext({
     restoreTodo: (id) => { },
     togglePin: (id) => { },
     toggleComplete: (id) => { },
-
+    toggleLock: (id) => { },
 });
 
 export const UseTodo = () => {

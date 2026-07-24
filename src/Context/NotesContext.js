@@ -20,6 +20,7 @@ export const NoteContext = createContext({
     closeForm: () => { },
     restoreNote: (id) => { },
     togglePin: (id) => { },
+    toggleLock: (id) => { }, 
 });
 
 

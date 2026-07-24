@@ -7,7 +7,7 @@ import { UseNote } from "../../Context/NotesContext";
 import NoteDetails from "./NoteDetails";
 
 function NoteForm({ selectedNote, closeForm }) {
-    const { notes, UpdateNote, addNote, softDelNote } = UseNote();
+    const { notes, UpdateNote, addNote, softDelNote, toggleLock } = UseNote();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -109,6 +109,7 @@ function NoteForm({ selectedNote, closeForm }) {
                                 key={currentNote.id}
                                 note={currentNote}
                                 softDelete={handleSoftDelete}
+                                toggleLock={toggleLock}
                             />
                         )}
                     </div>

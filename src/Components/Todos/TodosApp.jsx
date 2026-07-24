@@ -75,6 +75,15 @@ function TodosApp() {
         setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
     };
 
+    // Lock / Unlock logic..................
+
+    const toggleLock = (id) => {
+        setTodos(prevTodos => prevTodos.map(todo =>
+            todo.id === id ? { ...todo, isLocked: !todo.isLocked } : todo
+        ));
+    };
+
+
     const openForm = (todo) => {
         setSelectedTodo(todo);
         setIsFormOpen(true);
@@ -99,7 +108,7 @@ function TodosApp() {
     };
 
     return (
-        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, restoreTodo, toggleComplete, openForm, closeForm }}>
+        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, toggleLock, restoreTodo, toggleComplete, openForm, closeForm }}>
 
             <div className="flex relative animate-fadeIn">
 

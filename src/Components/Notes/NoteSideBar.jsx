@@ -18,7 +18,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
     const keys = [
         { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount },
         { id: 2, label: 'Pinned Notes', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedNotesCount },
-        // { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
+        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
         { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 

@@ -8,7 +8,7 @@ import { UseTodo } from "../../Context/TodosContext";
 import TodoDetails from "./TodosDetails";
 
 function TodoForm({ selectedTodo, closeForm }) {
-    const { todos, UpdateTodo, addTodo, softDelTodo } = UseTodo();
+    const { todos, UpdateTodo, addTodo, softDelTodo, toggleLock } = UseTodo();
     const [text, setText] = useState("");
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
@@ -94,6 +94,7 @@ function TodoForm({ selectedTodo, closeForm }) {
                             key={currentTodo.id}
                             todo={currentTodo}
                             softDelete={handleSoftDelete}
+                            toggleLock={toggleLock}
                         />
                     )}
                 </div>

@@ -23,7 +23,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
         { id: 2, label: 'Pinned Tasks', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedTodosCount },
         { id: 3, label: 'Pending Tasks', icon: <MdCheckBoxOutlineBlank />, count: pendingTodosCount },
         { id: 4, label: 'Completed Tasks', icon: <FaCircleCheck />, count: completedTodosCount },
-        // { id: 5, label: 'Locked Tasks', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
+        { id: 5, label: 'Locked Tasks', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
         { id: 6, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 

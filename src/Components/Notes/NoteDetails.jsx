@@ -9,7 +9,7 @@ import { UseNote } from "../../Context/NotesContext";
 import { jsPDF } from "jspdf";
 import { FormatDate } from "../Common/FormateDate";
 
-function NoteDetails({ note, softDelete }) {
+function NoteDetails({ note, softDelete, toggleLock }) {
 
   const { togglePin } = UseNote();
   const [showConfirm, setShowConfirm] = useState(false);
@@ -50,9 +50,16 @@ function NoteDetails({ note, softDelete }) {
             </>
           ) : (
             <>
-              <SiPinboard className="text-[#6949c1] text-lg transform scale-x-[-1]" /> Pin
+              <SiPinboard className="text-[#6949c1] transform scale-x-[-1]" /> Pin
             </>
           )}
+        </p>
+
+        {/* Lock / Unlock */}
+
+        <p onClick={() => toggleLock(note.id)}
+          className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] rounded-md h-10 px-2">
+          {note?.isLocked ? <><TiLockOpen className="text-[#6949c1]" /> Unlock</> : <><TiLockClosed className="text-[#6949c1]" /> Lock</>}
         </p>
 
         {/* Download Button */}

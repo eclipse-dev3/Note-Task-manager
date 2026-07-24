@@ -2,16 +2,22 @@
 import { useState } from "react";
 import { SiPinboard } from "react-icons/si";
 import { MdDeleteForever, MdRestore, MdEdit } from "react-icons/md";
+import { TiLockClosed, TiLockOpen } from "react-icons/ti";
 import { UseTodo } from "../../Context/TodosContext";
 import ConfirmModal from "../Common/Confirm";
+import PinModal from "../Common/PinModal";
 import { FormatDateShort, FormatDate } from "../Common/FormateDate";
 import { BsCalendar2Check } from "react-icons/bs";
 
 function TodosCard({ todo, isRecycleBin }) {
-    const { openForm, softDelTodo, permanentDelTodo, restoreTodo, toggleComplete } = UseTodo();
+    const { openForm, softDelTodo, permanentDelTodo, restoreTodo, toggleComplete, toggleLock } = UseTodo();
 
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showRestoreConfirm, setShowRestoreConfirm] = useState(false);
+
+    // Lock feature state
+    const [isUnlocked, setIsUnlocked] = useState(false);
+    const [showPinPrompt, setShowPinPrompt] = useState(false);
 
     const handleDeleteClick = (e) => {
         e.stopPropagation();
@@ -37,14 +43,44 @@ function TodosCard({ todo, isRecycleBin }) {
         restoreTodo(todo.id);
     };
 
+    // Lock feature handlers
+    const handleLockToggle = (e) => {
+        e.stopPropagation();
+
+        if (!todo.isLocked) {
+            // Not locked yet -> lock it now, no PIN needed to lock
+            toggleLock(todo.id);
+            setIsUnlocked(false);
+        } else if (isUnlocked) {
+            // Locked, but currently revealed -> just re-hide it, no PIN needed to hide
+            setIsUnlocked(false);
+        } else {
+            // Locked and hidden -> PIN needed to view it
+            setShowPinPrompt(true);
+        }
+    };
+
+    const handleCardClick = () => {
+        if (todo.isLocked && !isUnlocked) {
+            setShowPinPrompt(true);
+            return;
+        }
+        if (!isRecycleBin && !todo.isCompleted && window.innerWidth <= 550) {
+            openForm(todo);
+        }
+    };
+
+    const handlePinSuccess = () => {
+        setIsUnlocked(true);
+        setShowPinPrompt(false);
+    };
+
+    const isHidden = todo.isLocked && !isUnlocked;
+
     return (
         <>
             <div
-                onClick={() => {
-                    if (!isRecycleBin && !todo.isCompleted && window.innerWidth <= 550) {
-                        openForm(todo);
-                    }
-                }}
+                onClick={handleCardClick}
                 className={`
                     rounded-md 
                     shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
@@ -64,9 +100,17 @@ function TodosCard({ todo, isRecycleBin }) {
                 `}
             >
 
+                {/* Locked overlay — blurs content until PIN is entered */}
+                {isHidden && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center gap-1.5 bg-white/70 backdrop-blur-sm">
+                        <TiLockClosed className="text-lg text-gray-500" />
+                        <span className="text-xs font-semibold text-gray-500">Locked</span>
+                    </div>
+                )}
+
                 {/* Title...... */}
 
-                <div className="flex items-center gap-5 w-[96%]">
+                <div className={`flex items-center gap-5 w-[96%] ${isHidden ? "blur-sm select-none" : ""}`}>
                     {!isRecycleBin &&
                         <input
                             onChange={() => toggleComplete(todo.id)}
@@ -98,7 +142,7 @@ function TodosCard({ todo, isRecycleBin }) {
 
                 {/* Footer Actions */}
 
-                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3 max-[550px]:bottom-1.5 max-[550px]:left-2 max-[550px]:right-1.5">
+                <div className={`flex items-center justify-between absolute bottom-3 left-3 right-3 max-[550px]:bottom-1.5 max-[550px]:left-2 max-[550px]:right-1.5 ${isHidden ? "pointer-events-none blur-sm" : ""}`}>
 
                     {isRecycleBin &&
                         <div className="relative group">
@@ -125,6 +169,28 @@ function TodosCard({ todo, isRecycleBin }) {
                     )}
 
                     <div className="flex items-center gap-6  absolute right-0 bottom-0">
+
+                        {!isRecycleBin && (
+                            <div className="relative group">
+                                {isHidden ? (
+                                    <TiLockClosed
+                                        onClick={handleLockToggle}
+                                        className="cursor-pointer text-md text-gray-600 hover:text-[#ea105c] hover:scale-120 transition-transform duration-200"
+                                    />
+                                ) : (
+                                    <TiLockOpen
+                                        onClick={handleLockToggle}
+                                        className="cursor-pointer text-md text-gray-600 hover:text-[#ea105c] hover:scale-120 transition-transform duration-200"
+                                    />
+                                )}
+                                <span
+                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(234,16,92,0.5)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                >
+                                    {isHidden ? "Unlock" : "Lock"}
+                                </span>
+                            </div>
+                        )}
+
                         {!isRecycleBin &&
 
                             <div className="relative group">
@@ -167,13 +233,13 @@ function TodosCard({ todo, isRecycleBin }) {
                 classes={"bg-red-500 hover:bg-red-600"}
                 title={
                     isRecycleBin
-                        ? "Permanently Delete Note?"
-                        : "Move Note to Recycle Bin?"
+                        ? "Permanently Delete Task?"
+                        : "Move Task to Recycle Bin?"
                 }
                 message={
                     isRecycleBin
-                        ? "This action cannot be undone. Are you sure you want to delete this note permanently?"
-                        : "Are you sure you want to move this note to the recycle bin?"
+                        ? "This action cannot be undone. Are you sure you want to delete this task permanently?"
+                        : "Are you sure you want to move this task to the recycle bin?"
                 }
                 onCancel={() => setShowDeleteConfirm(false)
                 }
@@ -187,13 +253,24 @@ function TodosCard({ todo, isRecycleBin }) {
                         confirmText={"Restore"}
                         classes={"bg-blue-500 hover:bg-blue-600"}
                         isOpen={showRestoreConfirm}
-                        title={"Restore Note?"}
-                        message={"Are you sure you want to restore this note from the recycle bin?"}
+                        title={"Restore Task?"}
+                        message={"Are you sure you want to restore this task from the recycle bin?"}
                         onCancel={() => setShowRestoreConfirm(false)}
                         onConfirm={handleConfirmRestore}
                     />
                 )
             }
+
+            {/* PIN prompt for locked tasks */}
+            {showPinPrompt && (
+                <PinModal
+                    onSuccess={handlePinSuccess}
+                    onCancel={(e) => {
+                        e?.stopPropagation?.();
+                        setShowPinPrompt(false);
+                    }}
+                />
+            )}
         </>
     );
 }
