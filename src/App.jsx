@@ -105,7 +105,7 @@ function App() {
             title="Signed out — local device only"
           >
             <a href="https://gauravk.vercel.app" target="_blank" className="relative group">
-              <img src={profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5  rounded-full" />
+              {/* <img src={profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5  rounded-full" /> */}
             </a>
           </div>
         </div>
