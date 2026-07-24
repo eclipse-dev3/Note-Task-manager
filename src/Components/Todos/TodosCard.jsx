@@ -165,7 +165,7 @@ function TodosCard({ todo, isRecycleBin }) {
                                     <BsCalendar2Check className="max-[550px]:text-[10px] font-bold" />
                                     {FormatDate(todo?.completedAt)}</span>
                             </div>
-                            : < span className="text-xs max-[550px]:text-[9px] font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
+                            : < span className="text-xs max-[550px]:text-[9px] font-semibold text-gray-700">{FormatDate(todo?.createdAt)}</span>
                     )}
 
                     <div className="flex items-center gap-6  absolute right-0 bottom-0">

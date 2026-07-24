@@ -46,7 +46,7 @@ function NoteDetails({ note, softDelete, toggleLock }) {
         >
           {note?.isPinned ? (
             <>
-              <RiUnpinLine className="text-[#6949c1] text-lg" /> Unpin
+              <RiUnpinLine className="text-[#6949c1]" /> Unpin
             </>
           ) : (
             <>
@@ -66,7 +66,7 @@ function NoteDetails({ note, softDelete, toggleLock }) {
         <p className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#6949c1] rounded-md h-10 px-2 transition-all duration-200"
           onClick={() => handleDownloadPdf(note)}
         >
-          <HiOutlineDownload className="text-[#6949c1] text-lg" /> Download
+          <HiOutlineDownload className="text-[#6949c1]" /> Download
         </p>
 
         {/* Created / Updated */}

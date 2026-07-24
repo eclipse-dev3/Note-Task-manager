@@ -45,11 +45,11 @@ function TodoDetails({ todo, softDelete, toggleLock }) {
                     className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#ea105c] rounded-md h-10 px-2 transition-all duration-200">
                     {todo?.isPinned ? (
                         <>
-                            <RiUnpinLine className="text-[#ea105c] text-lg" /> Unpin
+                            <RiUnpinLine className="text-[#ea105c]" /> Unpin
                         </>
                     ) : (
                         <>
-                            <SiPinboard className="text-[#ea105c] text-lg transform scale-x-[-1]" /> Pin
+                            <SiPinboard className="text-[#ea105c] transform scale-x-[-1]" /> Pin
                         </>
                     )}
                 </p>
@@ -59,13 +59,13 @@ function TodoDetails({ todo, softDelete, toggleLock }) {
 
                 <p onClick={() => toggleLock(todo.id)}
                     className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] rounded-md h-10 px-2">
-                    {todo?.isLocked ? <><TiLockOpen className="text-[#6949c1]" /> Unlock</> : <><TiLockClosed className="text-[#6949c1]" /> Lock</>}
+                    {todo?.isLocked ? <><TiLockOpen className="text-[#ea105c]" /> Unlock</> : <><TiLockClosed className="text-[#ea105c]" /> Lock</>}
                 </p>
 
                 {/* Download Buttons */}
                 <p className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#ea105c] rounded-md h-10 px-2 transition-all duration-200"
                     onClick={() => handleDownloadPdf(todo)}>
-                    <HiOutlineDownload className="text-[#ea105c] text-lg" /> Download
+                    <HiOutlineDownload className="text-[#ea105c]" /> Download
                 </p>
 
                 {/* Created / Updated */}

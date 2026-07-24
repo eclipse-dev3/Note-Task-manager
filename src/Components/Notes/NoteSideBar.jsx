@@ -68,19 +68,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
 
                 {/* Footer links */}
                 < ul className=" max-[550px]:bottom-5 w-full border-t border-white/30" >
-                    <li className="p-3 flex items-center justify-evenly gap-2">
-                        <span className="text-sm font-bold flex flex-col">Contact</span>
-                        <div className="relative group">
-                            <a href="https://gauravk.vercel.app" target="_blank">
-                                <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" />
-                            </a>
-                            <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                Portfolio
-                            </span>
-                        </div>
-                    </li>
-
-                    <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
+                    <li className="flex gap-6 max-[550px]:gap-6 pb-3 pt-3 justify-center">
                         <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
                         <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
                         <a href="https://www.instagram.com/eclipsedev03" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
