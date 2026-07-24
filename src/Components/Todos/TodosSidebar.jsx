@@ -6,7 +6,6 @@ import { useState } from "react";
 import { FaLinkedin, FaSquareXTwitter, FaCircleCheck } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import Profile from '../../../src/assets/Profile.png'
 
 function TodosSideBar({ isOpen, onSelectFolder, todos }) {
     const [activeFolder, setActiveFolder] = useState("All Tasks");
