@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import NoteApp from "./Components/Notes/NoteApp";
 import TodosApp from "./Components/Todos/TodosApp";
-import profile from './assets/profile.png';
+import profile from './assets/profilecopy.png';
 import "./App.css";
 
 const TABS = [
