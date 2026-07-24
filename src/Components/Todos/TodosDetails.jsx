@@ -21,7 +21,7 @@ function TodoDetails({ todo, softDelete }) {
 
     const handleConfirmDelete = () => {
         setShowConfirm(false);
-        softDelete(note.id);
+        softDelete(todo.id);
     };
 
     const handlePinToggle = (e) => {
@@ -33,7 +33,7 @@ function TodoDetails({ todo, softDelete }) {
         const doc = new jsPDF();
         const content = `Title: ${todo.text}\n\nCreated At: ${todo.createdAt}\nLast Updated: ${todo.lastUpdateAt}`;
         doc.text(content, 10, 10);
-        doc.save(`${todo.todo}.pdf`);
+        doc.save(`${todo.text}.pdf`);
     };
 
     return (
