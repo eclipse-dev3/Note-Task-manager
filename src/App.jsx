@@ -17,8 +17,8 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F7FB]">
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md ">
-        <div className="flex items-center justify-between px-4 sm:px-6 h-16 max-w-6xl mx-auto w-full">
+      <header className="sticky top-0 z-30 bg-white/70 backdrop-blur-md ">
+        <div className="flex items-center justify-between px-4 sm:px-6 h-15 max-w-6xl mx-auto w-full">
 
           {/* Logo mark */}
           <div className="flex items-center gap-2.5 select-none shrink-0">
@@ -71,7 +71,7 @@ function App() {
           {/* tab switcher */}
           <nav
             aria-label="Switch view"
-            className="relative flex items-center bg-gray-100/80 rounded-full p-1 gap-1"
+            className="relative flex items-center bg-gray-100 rounded-full p-1 gap-2"
           >
             {TABS.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -80,7 +80,7 @@ function App() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   aria-pressed={isActive}
-                  className={`relative h-9 px-5 sm:px-7 rounded-full text-sm font-medium cursor-pointer
+                  className={`relative h-9 px-5 sm:px-7 z-1 rounded-full text-sm font-medium cursor-pointer
                     transition-colors duration-300 ease-out
                      focus-visible:outline-offset-2 focus-visible:outline-violet-400
                     ${isActive ? "text-white" : "text-gray-600 hover:text-gray-900"}`}
