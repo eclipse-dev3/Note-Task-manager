@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import NoteApp from "./Components/Notes/NoteApp";
 import TodosApp from "./Components/Todos/TodosApp";
-// import profile from '../src/assets/profile.png';
+import profile from '../src/assets/profile.png';
 import "./App.css";
 
 const TABS = [
@@ -68,7 +68,7 @@ function App() {
             </span>
           </div>
 
-          {/* Segmented tab switcher */}
+          {/* tab switcher */}
           <nav
             aria-label="Switch view"
             className="relative flex items-center bg-gray-100/80 rounded-full p-1 gap-1"
@@ -99,13 +99,12 @@ function App() {
             })}
           </nav>
 
-          {/* Status / profile placeholder — quiet, reserved for future account UI */}
+          {/* profile placeholder. */}
           <div
-            className="w-10 h-10 rounded-full bg-gray-100 border border-black/5 flex items-center justify-center text-gray-500 text-[11px] font-semibold shrink-0"
-            title="Signed out — local device only"
+            className="w-10 h-10 rounded-full bg-gray-100 border border-black/5 flex items-center justify-center text-gray-500 shrink-0"
           >
-            <a href="https://gauravk.vercel.app" target="_blank" className="relative group">
-              {/* <img src={profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5  rounded-full" /> */}
+            <a href="https://gauravk.vercel.app" target="_blank">
+              <img src={profile} alt="Profile" className="hover:scale-110 duration-200 p-0.5" />
             </a>
           </div>
         </div>
