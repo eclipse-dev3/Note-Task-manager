@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { TodoContext } from "../../Context/TodosContext"
 import SearchBar from "../Common/SearchBar"
 import TodosList from "./TodosList"
@@ -7,6 +7,7 @@ import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
 import { LuNotebook } from "react-icons/lu";
 import TodosSideBar from './TodosSidebar'
+import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 
 function TodosApp() {
 
@@ -22,6 +23,8 @@ function TodosApp() {
             <LuNotebook /> All Tasks
         </div>
     );
+
+    const searchInputRef = useRef(null);
 
     // Debounce search input
     useEffect(() => {
@@ -75,15 +78,6 @@ function TodosApp() {
         setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
     };
 
-    // Lock / Unlock logic..................
-
-    const toggleLock = (id) => {
-        setTodos(prevTodos => prevTodos.map(todo =>
-            todo.id === id ? { ...todo, isLocked: !todo.isLocked } : todo
-        ));
-    };
-
-
     const openForm = (todo) => {
         setSelectedTodo(todo);
         setIsFormOpen(true);
@@ -107,8 +101,17 @@ function TodosApp() {
         );
     };
 
+    // Keyboard shortcuts: Ctrl/Cmd+N -> new task, "/" -> focus search, Esc -> close form
+    useKeyboardShortcuts({
+        onNew: () => openForm(null),
+        onFocusSearch: () => searchInputRef.current?.focus(),
+        onEscape: () => {
+            if (isFormOpen) closeForm();
+        },
+    });
+
     return (
-        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, toggleLock, restoreTodo, toggleComplete, openForm, closeForm }}>
+        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, restoreTodo, toggleComplete, openForm, closeForm }}>
 
             <div className="flex relative animate-fadeIn">
 
@@ -123,7 +126,9 @@ function TodosApp() {
                 <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
-                    <SearchBar placeholder={'Search tasks...'}
+                    <SearchBar
+                        ref={searchInputRef}
+                        placeholder={'Search tasks... (press / to focus)'}
                         searchInput={searchInput} setSearchInput={setSearchInput}
                         className='text-[#ea105c] hover:text-[#ea105c]'
                     />
@@ -139,12 +144,12 @@ function TodosApp() {
 
                     {/* Floating Add Button */}
                     <div
-                        onClick={() => setIsFormOpen(true)}
+                        onClick={() => openForm(null)}
                         className="group absolute bottom-20 right-10 max-[550px]:right-6 bg-white rounded-full shadow-xl p-4 max-[550px]:p-4.5 cursor-pointer text-red-500 hover:scale-[1.1] hover:shadow-3xl transition-all duration-300 animate-fadeIn"
                     >
                         <FaRegPenToSquare className="text-xl" />
                         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">
-                            New Task
+                            New Task <span className="opacity-70">(press N)</span>
                         </span>
                     </div>
 

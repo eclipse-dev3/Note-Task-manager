@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { NoteContext } from "../../Context/NotesContext"
 import SearchBar from "../Common/SearchBar"
 import NoteList from "./NoteList"
@@ -7,6 +7,7 @@ import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
 import NoteSideBar from "./NoteSideBar"
 import { LuNotebook } from "react-icons/lu";
+import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 
 function NoteApp() {
 
@@ -22,6 +23,8 @@ function NoteApp() {
             <LuNotebook /> All Notes
         </div>
     );
+
+    const searchInputRef = useRef(null);
 
     // Debounce search input
     useEffect(() => {
@@ -71,14 +74,6 @@ function NoteApp() {
         setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
     };
 
-    // Lock / Unlock logic..................
-
-    const toggleLock = (id) => {
-        setNotes(prevNotes => prevNotes.map(note =>
-            note.id === id ? { ...note, isLocked: !note.isLocked } : note
-        ));
-    };
-
     const openForm = (note) => {
         setSelectedNote(note);
         setIsFormOpen(true);
@@ -102,8 +97,17 @@ function NoteApp() {
         );
     };
 
+    // Keyboard shortcuts: Ctrl/Cmd+N -> new note, "/" -> focus search, Esc -> close form
+    useKeyboardShortcuts({
+        onNew: () => openForm(null),
+        onFocusSearch: () => searchInputRef.current?.focus(),
+        onEscape: () => {
+            if (isFormOpen) closeForm();
+        },
+    });
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, togglePin, toggleLock, restoreNote, openForm, closeForm }}>
+        <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, togglePin, restoreNote, openForm, closeForm }}>
 
             <div className="flex relative animate-fadeIn">
 
@@ -118,7 +122,9 @@ function NoteApp() {
                 <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
-                    <SearchBar placeholder={'Search notes...'}
+                    <SearchBar
+                        ref={searchInputRef}
+                        placeholder={'Search notes... (press / to focus)'}
                         searchInput={searchInput} setSearchInput={setSearchInput}
                         className='text-[#7d5dd3] hover:text-[#7d5dd3]'
                     />
@@ -139,7 +145,7 @@ function NoteApp() {
                     >
                         <FaRegPenToSquare className="text-xl" />
                         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">
-                            New Note
+                            New Note <span className="opacity-70">(press N)</span>
                         </span>
                     </div>
 

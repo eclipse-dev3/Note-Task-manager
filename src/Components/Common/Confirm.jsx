@@ -1,15 +1,27 @@
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ConfirmModal({ isOpen, title, message, onCancel, onConfirm, classes, confirmText }) {
 
-    return (
+    // Close on Escape, same as clicking the backdrop
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleEsc = (e) => {
+            if (e.key === "Escape") onCancel();
+        };
+        window.addEventListener("keydown", handleEsc);
+        return () => window.removeEventListener("keydown", handleEsc);
+    }, [isOpen, onCancel]);
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 top-0 left-0 w-full h-full bg-black/30 flex items-center justify-center z-1000"
+                    className="fixed inset-0 top-0 left-0 w-screen h-screen bg-black/40 backdrop-blur-xs flex items-center justify-center z-[1000] animate-fadeIn"
                     onClick={onCancel}
                 >
                     <motion.div
@@ -41,7 +53,8 @@ function ConfirmModal({ isOpen, title, message, onCancel, onConfirm, classes, co
                 </motion.div>
             )
             }
-        </AnimatePresence >
+        </AnimatePresence >,
+        document.body
     );
 }
 

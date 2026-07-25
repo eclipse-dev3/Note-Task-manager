@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { IoSearchSharp, IoClose } from "react-icons/io5";
 
-function SearchBar({ placeholder, searchInput, setSearchInput, className }) {
+const SearchBar = forwardRef(function SearchBar({ placeholder, searchInput, setSearchInput, className }, ref) {
     const [isFocused, setIsFocused] = useState(false);
     const [showClear, setShowClear] = useState(false);
 
@@ -27,6 +27,7 @@ function SearchBar({ placeholder, searchInput, setSearchInput, className }) {
 
             {/* Input Field */}
             <input
+                ref={ref}
                 className={`
            w-full pl-10 pr-10 py-2 rounded-3xl text-sm font-semibold
            backdrop-blur-md 
@@ -69,6 +70,6 @@ function SearchBar({ placeholder, searchInput, setSearchInput, className }) {
             ></div>
         </div>
     );
-}
+});
 
 export default SearchBar;
