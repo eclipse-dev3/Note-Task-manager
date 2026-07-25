@@ -70,6 +70,10 @@ function NoteApp() {
         setNotes(prevNotes => prevNotes.map(note => note.id === id ? { ...note, isPinned: !note.isPinned } : note));
     };
 
+    const toggleLock = (id) => {
+        setNotes(prevNotes => prevNotes.map(note => note.id === id ? { ...note, isLocked: !note.isLocked } : note));
+    };
+
     const permanentDelNote = (id) => {
         setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
     };
@@ -107,7 +111,7 @@ function NoteApp() {
     });
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, togglePin, restoreNote, openForm, closeForm }}>
+        <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, togglePin, toggleLock, restoreNote, openForm, closeForm }}>
 
             <div className="flex relative animate-fadeIn">
 
