@@ -5,7 +5,7 @@ import TodosList from "./TodosList"
 import TodosForm from "./TodosForm"
 import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import { LuNotebook } from "react-icons/lu";
+import { LuListTodo } from "react-icons/lu";
 import TodosSideBar from './TodosSidebar'
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 
@@ -20,7 +20,7 @@ function TodosApp() {
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [activeFolderView, setActiveFolderView] = useState(
         <div className="flex items-center gap-2 h-6">
-            <LuNotebook /> All Tasks
+            <LuListTodo /> All Tasks
         </div>
     );
 

@@ -1,4 +1,4 @@
-import { LuNotebook } from "react-icons/lu";
+import { LuListTodo } from "react-icons/lu";
 import { TiLockClosed } from "react-icons/ti";
 import { SiPinboard } from "react-icons/si";
 import { HiOutlineTrash } from "react-icons/hi2";
@@ -18,7 +18,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
     const recycleBinCount = todos.filter(todo => todo.isDeleted).length;
 
     const keys = [
-        { id: 1, label: 'All Tasks', icon: <LuNotebook />, count: allTodosCount },
+        { id: 1, label: 'All Tasks', icon: <LuListTodo />, count: allTodosCount },
         { id: 2, label: 'Pinned Tasks', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedTodosCount },
         { id: 3, label: 'Pending Tasks', icon: <MdCheckBoxOutlineBlank />, count: pendingTodosCount },
         { id: 4, label: 'Completed Tasks', icon: <FaCircleCheck />, count: completedTodosCount },
