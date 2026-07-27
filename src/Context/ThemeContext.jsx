@@ -9,9 +9,9 @@ export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(() => {
         const saved = localStorage.getItem("theme");
         if (saved === "dark" || saved === "light") return saved;
-        // First-ever visit: respect the OS preference, then it becomes
-        // a manual, persisted choice from here on.
-        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        // No saved preference yet — always default to light,
+        // regardless of the OS/browser color-scheme setting.
+        return "light";
     });
 
     useEffect(() => {
