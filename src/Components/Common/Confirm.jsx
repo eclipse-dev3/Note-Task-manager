@@ -30,15 +30,15 @@ function ConfirmModal({ isOpen, title, message, onCancel, onConfirm, classes, co
                         exit={{ scale: 0.8, opacity: 0 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-white rounded-xl shadow-2xl w-80 text-center p-5"
+                        className="bg-white dark:bg-[#1e1e26] rounded-xl shadow-2xl w-80 text-center p-5"
                     >
-                        <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-                        <p className="text-gray-600 text-sm mb-5">{message}</p>
+                        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">{title}</h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-5">{message}</p>
 
                         <div className="flex justify-center gap-4">
                             <button
                                 onClick={onCancel}
-                                className="px-4 py-2 rounded-md border cursor-pointer border-gray-300 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition"
+                                className="px-4 py-2 rounded-md border cursor-pointer border-gray-300 dark:border-white/10 bg-gray-100 dark:bg-white/5 text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-white/10 transition"
                             >
                                 Cancel
                             </button>

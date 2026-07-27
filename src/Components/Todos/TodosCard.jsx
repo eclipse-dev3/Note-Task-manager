@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { SiPinboard } from "react-icons/si";
 import { MdDeleteForever, MdRestore, MdEdit } from "react-icons/md";
@@ -6,7 +5,7 @@ import { TiLockClosed, TiLockOpen } from "react-icons/ti";
 import { UseTodo } from "../../Context/TodosContext";
 import ConfirmModal from "../Common/Confirm";
 import PinModal from "../Common/PinModal";
-import { FormatDateShort, FormatDate } from "../Common/FormateDate";
+import { FormatDateShort, FormatDate } from "../../hooks/FormateDate";
 import { BsCalendar2Check } from "react-icons/bs";
 
 function TodosCard({ todo, isRecycleBin }) {
@@ -95,8 +94,8 @@ function TodosCard({ todo, isRecycleBin }) {
                     sm:h-[80px] lg:h-[80px] max-[640px]:h-[60px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
                     animate-fadeIn
-                    ${todo.isCompleted ? 'bg-gray-300' : 'bg-white'}
-            ${!isRecycleBin && !todo?.isCompleted ? " hover:bg-red-100" : "opacity-80 cursor-not-allowed"}
+                    ${todo.isCompleted ? 'bg-gray-300 dark:bg-[#1e1e26]' : 'bg-white dark:bg-[#25252f]'}
+            ${!isRecycleBin && !todo?.isCompleted ? " hover:bg-red-100 dark:hover:bg-[#2c2020]" : "opacity-80 cursor-not-allowed"}
                 `}
             >
 
@@ -125,7 +124,7 @@ function TodosCard({ todo, isRecycleBin }) {
                         {todo?.isPinned ? <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
                             : <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
                         }
-                        <h2 className={`font-semibold  line-clamp-1 text-md max-[550px]:text-xs ${todo.isCompleted ? 'line-through text-gray-600' : ''}`}>
+                        <h2 className={`font-semibold  line-clamp-1 text-md max-[550px]:text-xs text-gray-900 dark:text-gray-100 ${todo.isCompleted ? 'line-through text-gray-600 dark:text-gray-500' : ''}`}>
                             {todo.text}
                         </h2>
 
@@ -165,7 +164,7 @@ function TodosCard({ todo, isRecycleBin }) {
                                     <BsCalendar2Check className="max-[550px]:text-[10px] font-bold" />
                                     {FormatDate(todo?.completedAt)}</span>
                             </div>
-                            : < span className="text-xs max-[550px]:text-[9px] font-semibold text-gray-700">{FormatDate(todo?.createdAt)}</span>
+                            : < span className="text-xs max-[550px]:text-[9px] font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
                     )}
 
                     <div className="flex items-center gap-6  absolute right-0 bottom-0">

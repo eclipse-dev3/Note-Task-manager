@@ -7,7 +7,7 @@ import { UseNote } from "../../Context/NotesContext";
 import NoteDetails from "./NoteDetails";
 
 function NoteForm({ selectedNote, closeForm }) {
-    const { notes, UpdateNote, addNote, softDelNote, toggleLock } = UseNote();
+    const { notes, UpdateNote, addNote, softDelNote } = UseNote();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -72,19 +72,19 @@ function NoteForm({ selectedNote, closeForm }) {
             {/* Close Button */}
             <RiCloseFill
                 onClick={closeForm}
-                className="max-[550px]:hidden absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 hover:text-red-500 transition-all"
+                className="max-[550px]:hidden absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 dark:text-gray-300 hover:text-red-500 transition-all"
             />
 
-            <div className="relative bg-white backdrop-blur-xl border border-gray-200 w-[85%] max-w-2xl h-[80%] max-[550px]:w-[100%] max-[550px]:h-[100%] max-[550px]:rounded-none rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
+            <div className="relative bg-white dark:bg-[#1e1e26] backdrop-blur-xl border border-gray-200 dark:border-white/10 w-[85%] max-w-2xl h-[80%] max-[550px]:w-[100%] max-[550px]:h-[100%] max-[550px]:rounded-none rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
                 {/* Top Bar */}
-                <div className="flex items-center justify-between p-2 border-b border-gray-200">
+                <div className="flex items-center justify-between p-2 border-b border-gray-200 dark:border-white/10">
                     <IoChevronBack
                         onClick={closeForm}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-gray-700 hover:text-gray-500 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-gray-700 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-400 transition-all"
                     />
                     <GiCheckMark
                         onClick={handleSave}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#6949c1] hover:text-purple-700 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#6949c1] dark:text-[#a78bfa] hover:text-purple-700 transition-all"
                     />
                 </div>
 
@@ -95,21 +95,20 @@ function NoteForm({ selectedNote, closeForm }) {
                         placeholder="Title..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full bg-transparent px-3 py-1.5 rounded-md border-b-2 border-gray-300 outline-none focus:border-[#6949c1] text-lg font-semibold placeholder-gray-400 transition-all duration-300"
+                        className="w-full bg-transparent px-3 py-1.5 rounded-md border-b-2 border-gray-300 dark:border-gray-600 outline-none focus:border-[#6949c1] dark:focus:border-[#a78bfa] text-lg font-semibold text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-300"
                         autoFocus
                         spellCheck="false"
                     />
                     <div className="relative ml-2">
                         <BsThreeDotsVertical
                             onClick={handleDetailsToggle}
-                            className={`cursor-pointer text-xl hover:scale-110 duration-200 hover:text-[#6949c1] ${isDetailsOpen ? "text-[#6949c1]" : "text-gray-600"} transition-all`}
+                            className={`cursor-pointer text-xl hover:scale-110 duration-200 hover:text-[#6949c1] dark:hover:text-[#a78bfa] ${isDetailsOpen ? "text-[#6949c1] dark:text-[#a78bfa]" : "text-gray-600 dark:text-gray-400"} transition-all`}
                         />
                         {isDetailsOpen && (
                             <NoteDetails
                                 key={currentNote.id}
                                 note={currentNote}
                                 softDelete={handleSoftDelete}
-                                toggleLock={toggleLock}
                             />
                         )}
                     </div>
@@ -121,7 +120,7 @@ function NoteForm({ selectedNote, closeForm }) {
                     value={content}
                     spellCheck="false"
                     onChange={(e) => setContent(e.target.value)}
-                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 border border-gray-200 outline-none shadow-inner resize-none focus:ring-2 focus:ring-[#6949c1]/40 transition-all duration-300"
+                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 outline-none shadow-inner resize-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#6949c1]/40 dark:focus:ring-[#a78bfa]/40 transition-all duration-300"
                 ></textarea>
             </div>
         </div>

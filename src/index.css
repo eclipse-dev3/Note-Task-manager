@@ -1,4 +1,6 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
 
-
-/* @custom-variant dark (&:where(.dark, .dark *)); */
+/* Switch dark: utilities from OS-preference-based to class-based,
+   so we can toggle dark mode manually and persist the choice. */
+/* stylelint-disable-next-line at-rule-no-unknown */
+@custom-variant dark (&:where(.dark, .dark *));

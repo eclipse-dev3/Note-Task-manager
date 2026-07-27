@@ -5,7 +5,7 @@ import TodosList from "./TodosList"
 import TodosForm from "./TodosForm"
 import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import { LuListTodo } from "react-icons/lu";
+import { LuNotebook } from "react-icons/lu";
 import TodosSideBar from './TodosSidebar'
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 
@@ -20,7 +20,7 @@ function TodosApp() {
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [activeFolderView, setActiveFolderView] = useState(
         <div className="flex items-center gap-2 h-6">
-            <LuListTodo /> All Tasks
+            <LuNotebook /> All Tasks
         </div>
     );
 
@@ -70,6 +70,10 @@ function TodosApp() {
         setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isPinned: !todo.isPinned } : todo));
     };
 
+    const toggleLock = (id) => {
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isLocked: !todo.isLocked } : todo));
+    };
+
     const toggleComplete = (id) => {
         setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted, completedAt: new Date().toISOString() } : todo));
     }
@@ -111,7 +115,7 @@ function TodosApp() {
     });
 
     return (
-        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, restoreTodo, toggleComplete, openForm, closeForm }}>
+        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, toggleLock, restoreTodo, toggleComplete, openForm, closeForm }}>
 
             <div className="flex relative animate-fadeIn">
 
@@ -123,7 +127,7 @@ function TodosApp() {
                 />
 
                 {/* Main Content */}
-                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
+                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 dark:bg-[#1a1a22] rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden transition-colors duration-300">
 
                     {/* Search Bar */}
                     <SearchBar

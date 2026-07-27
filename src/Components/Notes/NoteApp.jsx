@@ -123,7 +123,7 @@ function NoteApp() {
                 />
 
                 {/* Main Content */}
-                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
+                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 dark:bg-[#1a1a22] rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden transition-colors duration-300">
 
                     {/* Search Bar */}
                     <SearchBar

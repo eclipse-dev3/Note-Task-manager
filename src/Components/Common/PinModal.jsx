@@ -97,20 +97,20 @@ function PinModal({ onSuccess, onCancel }) {
             <form
                 onSubmit={handleSubmit}
                 onClick={(e) => e.stopPropagation()}
-                className="relative bg-white rounded-xl shadow-2xl w-72 p-5 flex flex-col items-center gap-3"
+                className="relative bg-white dark:bg-[#1e1e26] rounded-xl shadow-2xl w-72 p-5 flex flex-col items-center gap-3"
             >
                 <RiCloseFill
                     onClick={onCancel}
-                    className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-red-500 cursor-pointer transition-all"
+                    className="absolute top-2 right-2 text-2xl text-gray-500 dark:text-gray-400 hover:text-red-500 cursor-pointer transition-all"
                 />
 
-                <TiLockClosed className="text-3xl text-[#7d5dd3]" />
-                <h3 className="text-md font-semibold text-gray-900 text-center">
+                <TiLockClosed className="text-3xl text-[#7d5dd3] dark:text-[#a78bfa]" />
+                <h3 className="text-md font-semibold text-gray-900 dark:text-gray-100 text-center">
                     {titles[mode]}
                 </h3>
 
                 {mode === "reset" ? (
-                    <p className="text-xs text-gray-500 text-center">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
                         This clears your current PIN and unlocks everything
                         that was locked. You'll set a new PIN right after.
                     </p>
@@ -122,15 +122,15 @@ function PinModal({ onSuccess, onCancel }) {
                         value={pin}
                         onChange={(e) => setPin(e.target.value)}
                         placeholder="••••"
-                        className="w-full text-center tracking-[0.5em] border border-gray-300 rounded-md px-3 py-2 outline-none focus:border-[#7d5dd3] transition-all"
+                        className="w-full text-center tracking-[0.5em] border border-gray-300 dark:border-gray-600 bg-transparent text-gray-900 dark:text-gray-100 rounded-md px-3 py-2 outline-none focus:border-[#7d5dd3] dark:focus:border-[#a78bfa] transition-all"
                     />
                 )}
 
-                {error && <p className="text-xs text-red-500 text-center">{error}</p>}
+                {error && <p className="text-xs text-red-500 dark:text-red-400 text-center">{error}</p>}
 
                 <button
                     type="submit"
-                    className="w-full bg-[#7d5dd3] hover:bg-[#6949c1] text-white font-medium rounded-md px-4 py-2 transition-all cursor-pointer"
+                    className="w-full bg-[#7d5dd3] hover:bg-[#6949c1] dark:bg-[#7d5dd3] dark:hover:bg-[#8f6fe0] text-white font-medium rounded-md px-4 py-2 transition-all cursor-pointer"
                 >
                     {mode === "create" && "Continue"}
                     {mode === "confirm" && "Confirm PIN"}
@@ -146,7 +146,7 @@ function PinModal({ onSuccess, onCancel }) {
                             setError("");
                             resetInput();
                         }}
-                        className="text-xs text-gray-400 hover:text-[#7d5dd3] cursor-pointer transition-all"
+                        className="text-xs text-gray-400 dark:text-gray-500 hover:text-[#7d5dd3] dark:hover:text-[#a78bfa] cursor-pointer transition-all"
                     >
                         Forgot PIN?
                     </button>
