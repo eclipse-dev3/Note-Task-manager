@@ -4,7 +4,7 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import NoteApp from "./Components/Notes/NoteApp";
 import TodosApp from "./Components/Todos/TodosApp";
 import { ThemeProvider, useTheme } from "./Context/ThemeContext";
-import profile from './assets/profilecopy.png';
+import profile from "./assets/profilecopy.png";
 import "./App.css";
 
 const TABS = [
@@ -46,7 +46,8 @@ function AppShell() {
           </div>
 
           {/* Segmented tab switcher */}
-          <nav aria-label="Switch view" className="relative flex items-center bg-gray-100/80 dark:bg-white/10 rounded-full p-1 gap-1">
+          <nav aria-label="Switch view" className="relative flex items-center bg-gray-100/50 rounded-full p-1 gap-2 dark:bg-white/10">
+
             {TABS.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -56,7 +57,7 @@ function AppShell() {
                   aria-pressed={isActive}
                   className={`relative h-9 px-5 sm:px-7 rounded-full text-sm font-medium cursor-pointer
                     transition-colors duration-300 ease-out
-                     focus-visible:outline-offset-2 focus-visible:outline-violet-400
+                   focus-visible:outline-offset-2 focus-visible:outline-violet-900
                     ${isActive ? "text-white" : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"}`}
                 >
                   {isActive && (
@@ -115,4 +116,3 @@ function App() {
 }
 
 export default App;
-
